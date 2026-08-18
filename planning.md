@@ -10,8 +10,6 @@ Every classification is written to a structured audit log. Creators can contest 
 
 The system intentionally communicates uncertainty because automated AI detection cannot prove authorship.
 
----
-
 ## 2. Detection Signals
 
 ### Signal 1 — LLM Classification
@@ -41,8 +39,6 @@ These properties provide a structurally different signal from the LLM.
 
 Its limitation is that human writing can naturally be very uniform or formal, while AI text can be deliberately edited to appear irregular.
 
----
-
 ## 3. Confidence Scoring
 
 The two scores are combined as:
@@ -50,32 +46,38 @@ The two scores are combined as:
 ```text
 confidence =
     0.65 * llm_score
-    + 0.35 * stylometric_scores
+    + 0.35 * stylometric_score
 ```
 
 The final score ranges from 0 to 1.
 
-Thresholds
-0.00–0.39: likely human-written
-0.40–0.69: uncertain
-0.70–1.00: likely AI-generated
+The thresholds are:
 
-A score near 0.5 therefore does not receive a definitive classification.
+0.00 <= confidence <= 0.30: likely human-written
+0.30 < confidence < 0.70: uncertain
+0.70 <= confidence <= 1.00: likely AI-generated
 
-4. Transparency Labels
-   High-confidence AI
+A score in the middle range represents genuine uncertainty rather than forcing a binary classification. The thresholds provide a conservative buffer around the middle of the score range so that borderline results are classified as uncertain.
 
-Likely AI-generated: Our analysis found strong signals associated with AI-generated writing. This result is an estimate, not proof of authorship.
+## 4. Transparency Labels
 
-High-confidence human
+The system returns one of three plain-language labels.
 
-Likely human-written: Our analysis found stronger signals associated with human-written text. This result is an estimate, not proof of authorship.
+### Likely AI-generated:
 
-Uncertain
+Our analysis found stronger signals associated with AI-generated text. This result is an estimate, not proof of authorship."
 
-Uncertain: Our analysis found mixed signals and cannot confidently determine whether this text was AI-generated or human-written.
+### Likely human-written
 
-5. Appeals Workflow
+Our analysis found stronger signals associated with human-written text. This result is an estimate, not proof of authorship.
+
+### Uncertain attribution:
+
+The signals were mixed or not strong enough to make a confident determination. This result is an estimate, not proof of authorship."
+
+The labels intentionally communicate that the classifier provides an estimate rather than proof of authorship.
+
+## 5. Appeals Workflow
 
 A creator can submit an appeal using:
 
@@ -96,8 +98,9 @@ Returns confirmation.
 
 Automated reclassification is not required.
 
-6. API Surface
-   POST /submit
+## 6. API Surface
+
+POST /submit
 
 Accepts:
 
@@ -127,7 +130,7 @@ GET /log
 
 Returns structured audit-log entries.
 
-7. Rate Limiting
+## 7. Rate Limiting
 
 The submission endpoint uses Flask-Limiter.
 
@@ -140,7 +143,7 @@ This allows normal creator usage while preventing a client from flooding the ser
 
 Exceeding the limit returns HTTP 429.
 
-8. Audit Logging
+## 8. Audit Logging
 
 Each classification records:
 
@@ -163,7 +166,7 @@ under_review status
 
 The audit log is stored as structured JSON.
 
-9. Error Handling
+## 9. Error Handling
 
 The API handles:
 
@@ -174,7 +177,10 @@ very short text
 detection failures
 nonexistent content IDs for appeals
 missing appeal reasoning
-rate-limit violations 10. Edge Cases
+rate-limit violations
+
+## 10. Edge Cases
+
 Short text
 
 Very short text provides too little information for meaningful stylometric analysis. The API therefore requires a minimum amount of text.
@@ -191,7 +197,7 @@ Human writing with repetitive style
 
 A human writer may naturally use repetitive or predictable structures, which can increase the stylometric AI score.
 
-11. False Positive Strategy
+## 11. False Positive Strategy
 
 False positives are especially important because an incorrect AI label can harm a creator.
 
@@ -204,7 +210,8 @@ Providing an appeals workflow.
 
 The system treats the result as an estimate rather than proof.
 
-12. Architecture
+## 12. Architecture
+
     +----------------+
     | Client |
     +-------+--------+
@@ -267,7 +274,17 @@ v
 Audit Log
 |
 v
-Confirmation 13. State Management
+Confirmation
+
+### Submission Flow
+
+`POST /submit` receives the raw text and creator ID. The LLM signal produces an `llm_score`, while the stylometric signal produces a `stylometric_score`. The confidence scorer combines these scores into a single confidence value, which determines the attribution category and transparency label. The classification and signal scores are then written to the audit log before the structured response is returned to the client.
+
+### Appeal Flow
+
+`POST /appeal` receives a `content_id` and creator reasoning. The system finds the original classification, changes its status to `under_review`, records the appeal reasoning and original decision in the audit log, and returns confirmation to the creator.
+
+## 13. State Management
 
 The content_id uniquely identifies each submission.
 
@@ -282,7 +299,7 @@ appeals
 
 The content ID connects an appeal to the original classification.
 
-14. Testing Plan
+## 14. Testing Plan
 
 I tested the system using:
 
@@ -298,28 +315,37 @@ I also tested:
 /appeal
 nonexistent content IDs
 missing fields
-rate limiting 15. AI Tool Plan
-Milestone 3
+rate limiting
 
-I used ChatGPT to help design the Flask endpoint and first detection signal.
+## 15. AI Tool Plan
 
-I provided the detection-signal specification and architecture and reviewed the generated code before integrating it.
+### Milestone 3 — Submission Endpoint + First Signal
 
-I verified the signal independently and then connected it to POST /submit.
+I provided ChatGPT with my detection-signal specification and architecture diagram and asked it to generate a Flask application skeleton with a `POST /submit` endpoint and an LLM-based detection function.
 
-Milestone 4
+The generated code provided the initial Flask route structure and Groq API integration. I reviewed and modified the implementation before using it, including input validation, content ID generation, and structured audit logging.
 
-I used ChatGPT to help implement the stylometric signal and confidence-scoring function.
+I verified the first signal independently with several test texts before connecting it to the endpoint.
 
-I verified that the final scoring weights and thresholds matched this specification.
+### Milestone 4 — Second Signal + Confidence Scoring
 
-Milestone 5
+I provided ChatGPT with the detection-signal specification, uncertainty design, and architecture diagram and asked it to implement the stylometric signal and combine the two signals into a confidence score.
 
-I used ChatGPT to help implement the transparency labels, appeal workflow, structured audit logging, and rate limiting.
+I specifically verified the generated weighting against my specification. The final implementation uses:
 
-I tested all three label categories, appeals, audit logging, and HTTP 429 behavior.
+`0.65 * llm_score + 0.35 * stylometric_score`
 
-16. Implementation Decisions
+I also tested the attribution thresholds using actual scores. The final implementation classifies scores of 0.70 or higher as likely AI-generated, scores of 0.30 or lower as likely human-written, and scores between those thresholds as uncertain.
+
+### Milestone 5 — Production Layer
+
+I used ChatGPT to help implement the transparency-label function, appeals workflow, audit logging, and Flask-Limiter configuration.
+
+I reviewed the generated label text and ensured the final strings matched the labels documented in this specification. I also verified that appeals change the content status to `under_review` and that the appeal reasoning is recorded.
+
+For rate limiting, I used `10 per minute;100 per day` with in-memory Flask-Limiter storage for local development and verified that excessive requests return HTTP 429.
+
+## 16. Implementation Decisions
 
 The project instructions referenced a specific Groq model, but model availability can change.
 
