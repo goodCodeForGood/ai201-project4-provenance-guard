@@ -1,0 +1,215 @@
+[
+  {
+    "content_id": "d403a6a9-1387-4bac-9328-c422ea5435fd",
+    "creator_id": "test-ai",
+    "timestamp": "2026-08-18T19:00:12.882983+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.6743,
+    "llm_score": 0.65,
+    "stylometric_score": 0.7193,
+    "status": "under_review",
+    "appeal_reasoning": "I believe this classification should be reviewed because the writing was created and edited by me."
+  },
+  {
+    "content_id": "6dbe2e7a-b502-4cee-b3a9-bcbb2bb31360",
+    "creator_id": "test-human",
+    "timestamp": "2026-08-18T19:00:23.672701+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.3359,
+    "llm_score": 0.2,
+    "stylometric_score": 0.5884,
+    "status": "classified"
+  },
+  {
+    "content_id": "091662bd-89e7-417b-936f-58c0030dcec8",
+    "creator_id": "test-borderline",
+    "timestamp": "2026-08-18T19:00:31.823672+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.3399,
+    "llm_score": 0.1,
+    "stylometric_score": 0.7854,
+    "status": "classified"
+  },
+  {
+    "content_id": "d403a6a9-1387-4bac-9328-c422ea5435fd",
+    "creator_id": "test-ai",
+    "timestamp": "2026-08-18T19:01:27.047026+00:00",
+    "event": "appeal",
+    "status": "under_review",
+    "appeal_reasoning": "I believe this classification should be reviewed because the writing was created and edited by me.",
+    "original_attribution": "uncertain",
+    "original_confidence": 0.6743,
+    "llm_score": 0.65,
+    "stylometric_score": 0.7193
+  },
+  {
+    "content_id": "515f53eb-ee16-4968-9b55-2c08aeb34fcb",
+    "creator_id": "rate-test",
+    "timestamp": "2026-08-18T19:02:21.521710+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.41,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8,
+    "status": "classified"
+  },
+  {
+    "content_id": "1eb3b98d-dee8-4ec4-a051-c219a3768011",
+    "creator_id": "rate-test",
+    "timestamp": "2026-08-18T19:02:21.861168+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.41,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8,
+    "status": "classified"
+  },
+  {
+    "content_id": "651a6f39-89b4-4c12-a631-c75e48efd3fe",
+    "creator_id": "rate-test",
+    "timestamp": "2026-08-18T19:02:22.288568+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.41,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8,
+    "status": "classified"
+  },
+  {
+    "content_id": "f1d29207-b7f2-436e-9cc8-6db309cd6ae8",
+    "creator_id": "rate-test",
+    "timestamp": "2026-08-18T19:02:22.675829+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.41,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8,
+    "status": "classified"
+  },
+  {
+    "content_id": "765dec16-7f22-4aa2-b911-ccf6d0946b96",
+    "creator_id": "rate-test",
+    "timestamp": "2026-08-18T19:02:23.042290+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.41,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8,
+    "status": "classified"
+  },
+  {
+    "content_id": "690bd31c-40fa-419a-b397-61326d56e7e7",
+    "creator_id": "rate-test",
+    "timestamp": "2026-08-18T19:02:23.399948+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.41,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8,
+    "status": "classified"
+  },
+  {
+    "content_id": "aefed4aa-8220-4c72-a476-341164850f76",
+    "creator_id": "rate-test",
+    "timestamp": "2026-08-18T19:02:23.700020+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.41,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8,
+    "status": "classified"
+  },
+  {
+    "content_id": "95c448e4-12d2-47aa-b256-8e0d6e10bc60",
+    "creator_id": "rate-test",
+    "timestamp": "2026-08-18T19:02:24.067220+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.41,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8,
+    "status": "classified"
+  },
+  {
+    "content_id": "ad8f027d-34cd-4205-b7f5-2f3e4202de13",
+    "creator_id": "likely-human-test",
+    "timestamp": "2026-08-18T19:16:42.439948+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.4201,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8289,
+    "status": "classified"
+  },
+  {
+    "content_id": "07ea0c29-68ba-4a8e-a6e9-6d583fd8762a",
+    "creator_id": "final-human-test",
+    "timestamp": "2026-08-18T19:19:55.614389+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.3981,
+    "llm_score": 0.15,
+    "stylometric_score": 0.8589,
+    "status": "classified"
+  },
+  {
+    "content_id": "e55b9191-1be7-49db-863c-297245cf6a3f",
+    "creator_id": "final-ai-test",
+    "timestamp": "2026-08-18T19:20:01.597071+00:00",
+    "attribution": "likely_ai",
+    "confidence": 0.7132,
+    "llm_score": 0.65,
+    "stylometric_score": 0.8306,
+    "status": "classified"
+  },
+  {
+    "content_id": "cdb50cd5-fac8-480a-ad00-e16b4774d008",
+    "creator_id": "final-borderline-test",
+    "timestamp": "2026-08-18T19:20:31.290948+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.4753,
+    "llm_score": 0.4,
+    "stylometric_score": 0.615,
+    "status": "classified"
+  },
+  {
+    "content_id": "ea16eee7-5415-420c-8d72-cb96342f7e9c",
+    "creator_id": "human-final-test-2",
+    "timestamp": "2026-08-18T19:20:46.387393+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.3657,
+    "llm_score": 0.15,
+    "stylometric_score": 0.7663,
+    "status": "classified"
+  },
+  {
+    "content_id": "a64a0609-1591-4d96-b9a8-ace350538a67",
+    "creator_id": "human-final-test-3",
+    "timestamp": "2026-08-18T19:20:54.348432+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.3439,
+    "llm_score": 0.1,
+    "stylometric_score": 0.7968,
+    "status": "classified"
+  },
+  {
+    "content_id": "10a958b1-0f4e-439c-ac00-80997a1f0869",
+    "creator_id": "human-final-test-4",
+    "timestamp": "2026-08-18T19:21:24.970077+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.4161,
+    "llm_score": 0.2,
+    "stylometric_score": 0.8175,
+    "status": "classified"
+  },
+  {
+    "content_id": "7d084e9b-dd2f-428c-b85f-a480129bf317",
+    "creator_id": "human-final-test-5",
+    "timestamp": "2026-08-18T19:21:36.866319+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.3955,
+    "llm_score": 0.15,
+    "stylometric_score": 0.8514,
+    "status": "classified"
+  },
+  {
+    "content_id": "5ffdea7e-0247-4120-846f-97b8426ddeef",
+    "creator_id": "test-user-1",
+    "timestamp": "2026-08-18T19:22:00.231976+00:00",
+    "attribution": "uncertain",
+    "confidence": 0.5885,
+    "llm_score": 0.4,
+    "stylometric_score": 0.9385,
+    "status": "classified"
+  }
+]
