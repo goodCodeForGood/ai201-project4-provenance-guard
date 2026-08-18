@@ -468,3 +468,5 @@ The short portfolio walkthrough demonstrates the API classification flow,
 confidence scoring, audit logging, appeals, and rate limiting.
 
 [Watch the Provenance Guard portfolio walkthrough](ai201-project4-provenance-guard/recording_proj4.mp4)
+
+Note: Due to large file size of the video, please directly click on the "recording_proj4.mp4" file in the repo, and then the "View raw" button to download the video and access it.
