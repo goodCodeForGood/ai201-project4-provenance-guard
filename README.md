@@ -461,3 +461,10 @@ The results demonstrate meaningful variation between high-confidence AI, high-co
 
 The edited-AI result also demonstrates a known limitation of the detector: edited AI text can be classified as human when the LLM signal is low.
 ```
+
+## Portfolio Walkthrough
+
+The short portfolio walkthrough demonstrates the API classification flow,
+confidence scoring, audit logging, appeals, and rate limiting.
+
+[Watch the Provenance Guard portfolio walkthrough](ai201-project4-provenance-guard/recording_proj4.mp4)
