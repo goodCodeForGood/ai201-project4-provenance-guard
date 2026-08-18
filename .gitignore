@@ -3,3 +3,4 @@ __pycache__/
 .env
 *.pyc
 audit_log.json
+audit_log_backup.json
